@@ -113,8 +113,8 @@
             var angle = (self.options.start_angle + (self._step * index)) * (Math.PI/180);
             var x = Math.round(self.options.circle_radius * Math.cos(angle));
             var y = Math.round(self.options.circle_radius * Math.sin(angle));
-            $item.data(pluginName+'-pos-x', x);
-            $item.data(pluginName+'-pos-y', y);
+            $item.data('plugin_'+pluginName+'-pos-x', x);
+            $item.data('plugin_'+pluginName+'-pos-y', y);
         });
         
         self._state = 'closed';
@@ -152,8 +152,8 @@
             setTimeout(function(){
                 $item.css({
                     visibility: 'visible',
-                    left: $item.data(pluginName+'-pos-x')+'px',
-                    top: $item.data(pluginName+'-pos-y')+'px'
+                    left: $item.data('plugin_'+pluginName+'-pos-x')+'px',
+                    top: $item.data('plugin_'+pluginName+'-pos-y')+'px'
                 });
             }, start + Math.abs(self.options.step_out) * index);
         });
