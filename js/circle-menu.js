@@ -14,6 +14,7 @@
         };
 
     function CircleMenu(element, options){
+        this._timeouts = [];
         this.element = $(element);
         this.options = $.extend({}, defaults, options);
         this._defaults = defaults;
@@ -127,11 +128,13 @@
         }else if(self.options.trigger === 'click'){
             self.options.delay = 0;
             self.element.find('li:first-child a').on('click',function(evt){
+                evt.preventDefault();
                 if(self._state === 'closed'){
                     self.open();
                 }else{
                     self.close();
                 }
+                return false;
             });
         }
     };
@@ -147,17 +150,17 @@
         }else{
             set = $($self.find('li:not(:first-child) a').get().reverse())
         }
+        self.clearTimeouts();
         set.each(function(index){
             var $item = $(this);
-            setTimeout(function(){
+            self._timeouts.push(setTimeout(function(){
                 $item.css({
                     visibility: 'visible',
                     left: $item.data('plugin_'+pluginName+'-pos-x')+'px',
                     top: $item.data('plugin_'+pluginName+'-pos-y')+'px'
                 });
-            }, start + Math.abs(self.options.step_out) * index);
+            }, start + Math.abs(self.options.step_out) * index));
         });
-        clearTimeout(self._timeoutId);
         this._state = 'open';
         return this;
     }
@@ -173,17 +176,25 @@
             }else{
                 set = $($self.find('li:not(:first-child) a').get().reverse());
             }
+            self.clearTimeouts();
             set.each(function(index){
                 var $item = $(this);
-                setTimeout(function(){
+                self._timeouts.push(setTimeout(function(){
                     $item.css({top:0,left:0,visibility:'hidden'});
-                }, start + Math.abs(self.options.step_in) * index)
+                }, start + Math.abs(self.options.step_in) * index));
             });
             $self.removeClass(pluginName+'-open');
         };
-        self._timeoutId = setTimeout(do_animation,self.options.delay);
+        self.clearTimeouts();
+        self._timeouts.push(setTimeout(do_animation,self.options.delay));
         this._state = 'closed';
         return this;
+    }
+    CircleMenu.prototype.clearTimeouts = function(){
+        var timeout;
+        while(timeout = this._timeouts.shift()){
+            clearTimeout(timeout);
+        }
     }
 
     $.fn[pluginName] = function(options){
