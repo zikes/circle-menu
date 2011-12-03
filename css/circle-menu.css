@@ -53,7 +53,7 @@ nav a.active{
 
 .menu{position:absolute;}
 
-#menu2{
+#menu2, #menu14, #menu15{
     left:135px;
     top:135px;
 }

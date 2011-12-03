@@ -7,46 +7,21 @@
         <script src="js/circle-menu.js"></script>
         <script>
             $(function(){
-                $('#menu').circleMenu({
-                    direction: 'bottom-right'
-                });
-                $('#menu2').circleMenu({
-                    direction: 'full',
-                    trigger: 'click'
-                });
-                $('#menu3').circleMenu({
-                    direction:'top-left'
-                });
-                $('#menu4').circleMenu({
-                    direction:'bottom-left'
-                });
-                $('#menu5').circleMenu({
-                    direction:'top-right'
-                });
-                $('#menu6').circleMenu({
-                    direction:'bottom'
-                });
-                $('#menu7').circleMenu({
-                    direction:'right'
-                });
-                $('#menu8').circleMenu({
-                    direction:'top'
-                });
-                $('#menu9').circleMenu({
-                    direction:'left'
-                });
-                $('#menu10').circleMenu({
-                    direction:'bottom-half'
-                });
-                $('#menu11').circleMenu({
-                    direction:'right-half'
-                });
-                $('#menu12').circleMenu({
-                    direction:'top-half'
-                });
-                $('#menu13').circleMenu({
-                    direction:'left-half'
-                });
+                $('#menu').circleMenu({direction:'bottom-right'});
+                $('#menu2').circleMenu({direction:'full', trigger:'click'});
+                $('#menu3').circleMenu({direction:'top-left'});
+                $('#menu4').circleMenu({direction:'bottom-left'});
+                $('#menu5').circleMenu({direction:'top-right'});
+                $('#menu6').circleMenu({direction:'bottom'});
+                $('#menu7').circleMenu({direction:'right'});
+                $('#menu8').circleMenu({direction:'top'});
+                $('#menu9').circleMenu({direction:'left'});
+                $('#menu10').circleMenu({direction:'bottom-half'});
+                $('#menu11').circleMenu({direction:'right-half'});
+                $('#menu12').circleMenu({direction:'top-half'});
+                $('#menu13').circleMenu({direction:'left-half'});
+                $('#menu14').circleMenu({direction:'full', trigger:'click', step_in: 300, step_out: 300});
+                $('#menu15').circleMenu({direction:'full', trigger:'click', step_in: -300, step_out: -300});
                 
                 $('a').on('click',function(evt){if($(this).attr('href')==='#'){evt.preventDefault(); return false;}});
                 
@@ -67,24 +42,75 @@
     <body>
         <nav>
             <ul>
-                <li><a href="#" rel="ex-bottom-right">Bottom Right</a></li>
+                <li><a href="#" rel="ex-corners">Corners</a></li>
+                <li><a href="#" rel="ex-sides">Sides</a></li>
+                <li><a href="#" rel="ex-sides-half">Sides, Half Circle</a></li>
                 <li><a href="#" rel="ex-full-clickopen">Full, Click to Open</a></li>
-                <li><a href="#" rel="ex-top-left">Top Left</a></li>
-                <li><a href="#" rel="ex-bottom-left">Bottom Left</a></li>
-                <li><a href="#" rel="ex-top-right">Top Right</a></li>
-                <li><a href="#" rel="ex-bottom">Bottom</a></li>
-                <li><a href="#" rel="ex-right">Right</a></li>
-                <li><a href="#" rel="ex-top">Top</a></li>
-                <li><a href="#" rel="ex-left">Left</a></li>
-                <li><a href="#" rel="ex-top-half">Top, Half Circle</a></li>
-                <li><a href="#" rel="ex-right-half">Right, Half Circle</a></li>
-                <li><a href="#" rel="ex-bottom-half">Bottom, Half Circle</a></li>
-                <li><a href="#" rel="ex-left-half">Left, Half Circle</a></li>
+                <li><a href="#" rel="ex-timing">Timing</a></li>
+                <li><a href="#" rel="ex-timing-reversed">Timing, Reversed</a></li>
             </ul>
         </nav>
         <div id="examples">
-            <div id="ex-bottom-right">
+            <div id="ex-corners">
                 <ul class="menu" id="menu">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <ul class="menu" id="menu3">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <ul class="menu" id="menu4">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <ul class="menu" id="menu5">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+            </div>
+            <div id="ex-sides">
+                <ul class="menu" id="menu6">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <ul class="menu" id="menu7">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <ul class="menu" id="menu8">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <ul class="menu" id="menu9">
                     <li><a href="#"></a></li>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -108,77 +134,7 @@
                     <li><a href="#">10</a></li>
                 </ul>
             </div>
-            <div id="ex-top-left">
-                <ul class="menu" id="menu3">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-bottom-left">
-                <ul class="menu" id="menu4">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-top-right">            
-                <ul class="menu" id="menu5">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-bottom">
-                <ul class="menu" id="menu6">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-right">
-                <ul class="menu" id="menu7">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-top">
-                <ul class="menu" id="menu8">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-left">
-                <ul class="menu" id="menu9">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>            
-            <div id="ex-bottom-half">
+            <div id="ex-sides-half">
                 <ul class="menu" id="menu10">
                     <li><a href="#"></a></li>
                     <li><a href="#">1</a></li>
@@ -190,8 +146,6 @@
                     <li><a href="#">7</a></li>
                     <li><a href="#">8</a></li>
                 </ul>
-            </div>
-            <div id="ex-right-half">
                 <ul class="menu" id="menu11">
                     <li><a href="#"></a></li>
                     <li><a href="#">1</a></li>
@@ -203,8 +157,6 @@
                     <li><a href="#">7</a></li>
                     <li><a href="#">8</a></li>
                 </ul>
-            </div>
-            <div id="ex-top-half">
                 <ul class="menu" id="menu12">
                     <li><a href="#"></a></li>
                     <li><a href="#">1</a></li>
@@ -216,9 +168,33 @@
                     <li><a href="#">7</a></li>
                     <li><a href="#">8</a></li>
                 </ul>
-            </div>
-            <div id="ex-left-half">
                 <ul class="menu" id="menu13">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#">8</a></li>
+                </ul>
+            </div>
+            <div id="ex-timing">
+                <ul class="menu" id="menu14">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#">8</a></li>
+                </ul>
+            </div>
+            <div id="ex-timing-reversed">
+                <ul class="menu" id="menu15">
                     <li><a href="#"></a></li>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
