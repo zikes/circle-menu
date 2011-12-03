@@ -1,4 +1,4 @@
-Circle Menu
+﻿Circle Menu
 ===========
 
 A jQuery plugin that emulates the menu in the [Path][] application.
