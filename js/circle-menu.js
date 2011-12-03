@@ -27,57 +27,57 @@
         if(typeof self.options.direction === 'string'){
             switch(self.options.direction.toLowerCase()){
                 case 'bottom-left':
-                    self.options.start_angle = 270;
-                    self.options.end_angle = 360;
+                    self.options.start_angle = 180;
+                    self.options.end_angle = 90;
                     break;
                 case 'bottom':
-                    self.options.start_angle = -45;
+                    self.options.start_angle = 135;
                     self.options.end_angle = 45;
                     break;
                 case 'right':
-                    self.options.start_angle = 90-45;
-                    self.options.end_angle = 90+45;
+                    self.options.start_angle = -45;
+                    self.options.end_angle = 45;
                     break;
                 case 'left':
-                    self.options.start_angle = 270-45;
-                    self.options.end_angle = 270+45;
+                    self.options.start_angle = 225;
+                    self.options.end_angle = 135;
                     break;
                 case 'top':
-                    self.options.start_angle = 180-45;
-                    self.options.end_angle = 180+45;
+                    self.options.start_angle = 225;
+                    self.options.end_angle = 315;
                     break;
                 case 'bottom-half':
+                    self.options.start_angle = 180;
+                    self.options.end_angle = 0;
+                    break;
+                case 'right-half':
                     self.options.start_angle = -90;
                     self.options.end_angle = 90;
                     break;
-                case 'right-half':
-                    self.options.start_angle = 0;
-                    self.options.end_angle = 180;
-                    break;
                 case 'left-half':
-                    self.options.start_angle = 270-90;
-                    self.options.end_angle = 270+90;
+                    self.options.start_angle = 270;
+                    self.options.end_angle = 90;
                     break;
                 case 'top-half':
-                    self.options.start_angle = 90;
-                    self.options.end_angle = 270;
+                    self.options.start_angle = 180;
+                    self.options.end_angle = 360;
                     break;
                 case 'top-left':
                     self.options.start_angle = 270;
                     self.options.end_angle = 180;
                     break;
                 case 'top-right':
-                    self.options.start_angle = 180;
-                    self.options.end_angle = 90;
+                    self.options.start_angle = 270;
+                    self.options.end_angle = 360;
                     break;
                 case 'full':
-                    self.options.start_angle = 0;
-                    self.options.end_angle = 360 - Math.floor(360/self.element.find('a').length);
+                    self.options.start_angle = -90;
+                    self.options.end_angle = 270 - Math.floor(360/self.element.find('a').length);
                     break;
                 case 'bottom-right':
                 default:
-                    self.options.start_angle = 90;
-                    self.options.end_angle = 0;
+                    self.options.start_angle = 0;
+                    self.options.end_angle = 90;
                     break;
             }
         }
@@ -111,8 +111,8 @@
         self.element.find('li:not(:first-child) a').each(function(index){
             var $item = $(this);
             var angle = (self.options.start_angle + (self._step * index)) * (Math.PI/180);
-            var x = Math.floor(self.options.circle_radius * Math.cos(angle));
-            var y = Math.floor(self.options.circle_radius * Math.sin(angle));
+            var x = Math.round(self.options.circle_radius * Math.cos(angle));
+            var y = Math.round(self.options.circle_radius * Math.sin(angle));
             $item.data(pluginName+'-pos-x', x);
             $item.data(pluginName+'-pos-y', y);
         });
@@ -152,8 +152,8 @@
             setTimeout(function(){
                 $item.css({
                     visibility: 'visible',
-                    top: $item.data(pluginName+'-pos-x')+'px',
-                    left: $item.data(pluginName+'-pos-y')+'px'
+                    left: $item.data(pluginName+'-pos-x')+'px',
+                    top: $item.data(pluginName+'-pos-y')+'px'
                 });
             }, start + Math.abs(self.options.step_out) * index);
         });
