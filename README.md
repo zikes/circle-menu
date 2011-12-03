@@ -32,8 +32,9 @@ Options
 
 ### direction
 
-`top` | `right` | `bottom` | `left` | `top-right` | `top-left` | `bottom-right` | `bottom-left` | 
+**Options:** `top` | `right` | `bottom` | `left` | `top-right` | `top-left` | `bottom-right` | `bottom-left` | 
 `top-half` | `right-half` | `bottom-half` | `left-half` | `full`
+
 The direction of the items in relation to the center.  `top` will place the items above the center, 
 in a 90 degree semicircle centered upwards.  `top-half` will create a full 180 degree semicircle.
 `full` will create a full 360 degree circle, with the first item appearing at the top.
@@ -46,7 +47,6 @@ Default: _none_
 
 ### angle
 
-`{start: 0, end: 90}`
 An object specifying the position of the items in relation to the center, measured in degrees where 
 0 and 360 are on the right.  An alternative to the `direction` option, if you want more control.
 
@@ -76,3 +76,72 @@ Default: `80`
 **Example:**
 
     $('ul').circleMenu({circle_radius:80});
+
+### speed
+
+The animation speed, in milliseconds.  The number given is the total amount of time it will take for
+the items to move in or out from the center.
+
+Default: `500`
+
+**Example:**
+
+    $('ul').circleMenu({speed:1000});
+
+### delay
+
+When the menu is triggered on hover, the delay is the amount of time before the items will move back
+in to the center, meaured in milliseconds.
+
+Default: `1000`
+
+**Example:**
+
+    $('ul').circleMenu({delay:500}); // a short delay
+
+### step_out
+
+The number of milliseconds between each item moving out from the center when the menu opens.  A
+negative value will cause the menu to open in reverse, starting with the last item.
+
+Default: `20`
+
+**Example:**
+
+    $('ul').circleMenu({step_out:60});
+
+### step_in
+
+The number of milliseconds between each item moving in to the center when the menu closes.  A
+negative value will cause the menu to close in reverse, starting with the last item.
+
+Default: `-20`
+
+**Example:**
+
+    $('ul').circleMenu({step_in:60});
+
+### trigger
+
+`hover` | `click`
+
+How the menu is triggered to open and close, whether by hovering over the center item or clicking 
+on it.
+
+Default: `hover`
+
+**Example:**
+
+    $('ul').circleMenu({trigger:'click'});
+
+### animation-timing-function
+
+`ease` | `linear` | `ease-in` | `ease-out` | `ease-in-out` | `cubic-bezier(n,n,n,n)`
+
+The CSS timing function used to control the open/close animation.
+
+Default: `ease`
+
+**Example:**
+
+    $('ul').circleMenu({'animation-timing-function':'linear'});
