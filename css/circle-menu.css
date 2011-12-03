@@ -1,4 +1,4 @@
-html,body{height:100%;padding:0;margin:0;}
+html,body{height:100%;padding:0;margin:0;overflow:hidden;}
 .menu li:first-child a {
     background:#f00;
     font-weight:bold;
