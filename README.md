@@ -66,7 +66,8 @@ Default: _none_
 ### angle
 
 An object specifying the position of the items in relation to the center, measured in degrees where 
-0 and 360 are on the right.  An alternative to the `direction` option, if you want more control.
+0/360 are on the right and angle travels in a clockwise direction.  An alternative to the `direction` 
+option, if you want more control.
 
 Default: `{start: 0, end: 90}`
 
