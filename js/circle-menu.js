@@ -180,36 +180,3 @@
         });
     }
 })(jQuery, window, document);
-
-
-$(function(){
-    $('#menu').circleMenu({
-        direction: 'bottom-right'
-    });
-    $('#menu2').circleMenu({
-        direction: 'full',
-        trigger: 'click'
-    });
-    $('#menu3').circleMenu({
-        direction:'top-left'
-    });
-    $('#menu4').circleMenu({
-        direction:'bottom-left'
-    });
-    $('#menu5').circleMenu({
-        direction:'top-right'
-    });
-    $('#menu6').circleMenu({
-        direction:'bottom'
-    });
-    $('#menu7').circleMenu({
-        direction:'right'
-    });
-    $('#menu8').circleMenu({
-        direction:'top'
-    });
-    $('#menu9').circleMenu({
-        direction:'left'
-    });
-    $('a').on('click',function(evt){evt.preventDefault(); return false;});
-});
