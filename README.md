@@ -25,7 +25,11 @@ Create a list, with the first list item representing the icon at the center of t
 
 The Javascript:
 
-    $('ul').circleMenu();
+    $('ul').circleMenu({
+        item_diameter: 40,
+        circle_radius: 100,
+        direction: 'bottom-right'
+    });
 
 Options
 -------
