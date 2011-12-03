@@ -43,10 +43,10 @@
             'bottom-right':[0,90]
         }
         if(typeof self.options.direction === 'string'){
-            var direction = directions[self.options.direction.toLowerCase()];
-            if(direction){
-                self.options.angle.start = direction[0];
-                self.options.angle.end = direction[1];
+            var dir = directions[self.options.direction.toLowerCase()];
+            if(dir){
+                self.options.angle.start = dir[0];
+                self.options.angle.end = dir[1];
             }
         }
 
