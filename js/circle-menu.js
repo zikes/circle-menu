@@ -136,6 +136,7 @@
         var self = this,
             selected, set_other;
         if(self._state === 'open'){
+            self.clearTimeouts();
             set_other = self.element.find('li:not(:nth-child('+index+'),:first-child) a');
             selected = self.element.find('li:nth-child('+index+') a');
             ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
