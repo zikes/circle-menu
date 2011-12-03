@@ -49,31 +49,7 @@
                 self.options.angle.end = dir[1];
             }
         }
-
-        self.element.css({
-            'list-style': 'none',
-            'margin': 0,
-            'padding': 0,
-            'width': self.options.item_diameter+'px'
-        });
-        var $items = self.element.find('a');
-        $items.css({
-            'display': 'block',
-            'width': self.options.item_diameter+'px',
-            'height': self.options.item_diameter+'px',
-            'border-radius': self.options.item_diameter+'px',
-            'text-align': 'center',
-            'line-height': self.options.item_diameter+'px',
-            'text-decoration': 'none',
-            'position': 'absolute',
-            'z-index': 1,
-            'overflow': 'hidden'
-        });
-        ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
-            $items.css(prefix+'transition','all '+self.options.speed+'ms '+self.options['animation-timing-function']);
-        });
-        self.element.find('li:first-child a').css({'z-index': 1000});
-        self.element.find('li:not(:first-child) a').css({'visibility': 'hidden',top:0,left:0});
+        self.initCss();
         self.item_count = self.element.find('li a').length - 1;
         self._step = (self.options.angle.end - self.options.angle.start) / (self.item_count-1);
         self.element.find('li:not(:first-child) a').each(function(index){
@@ -83,9 +59,11 @@
             var y = Math.round(self.options.circle_radius * Math.sin(angle));
             $item.data('plugin_'+pluginName+'-pos-x', x);
             $item.data('plugin_'+pluginName+'-pos-y', y);
+            $item.on('click', function(){
+                self.select(index+2);
+            });
         });
         
-        self._state = 'closed';
         if(self.options.trigger === 'hover'){
             self.element.on('mouseenter',function(evt){
                 self.open();
@@ -105,7 +83,6 @@
             });
         }
     };
-    
     CircleMenu.prototype.open = function(){
         var self = this;
         var $self = this.element;
@@ -131,7 +108,6 @@
         this._state = 'open';
         return this;
     }
-    
     CircleMenu.prototype.close = function(){
         var self = this;
         var $self = this.element;
@@ -156,11 +132,65 @@
         this._state = 'closed';
         return this;
     }
+    CircleMenu.prototype.select = function(index){
+        var self = this,
+            selected, set_other;
+        if(self._state === 'open'){
+            set_other = self.element.find('li:not(:nth-child('+index+'),:first-child) a');
+            selected = self.element.find('li:nth-child('+index+') a');
+            ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
+                selected.css(prefix+'transition','all 500ms ease-out');
+                set_other.css(prefix+'transition','all 500ms ease-out');
+                selected.css(prefix+'transform','scale(2)');
+                set_other.css(prefix+'transform','scale(0)');
+                
+            });
+            selected.css('opacity','0');
+            set_other.css('opacity','0');
+            self.element.removeClass(pluginName+'-open');
+            setTimeout(function(){self.initCss()},510);
+        }
+    }
     CircleMenu.prototype.clearTimeouts = function(){
         var timeout;
         while(timeout = this._timeouts.shift()){
             clearTimeout(timeout);
         }
+    }
+    CircleMenu.prototype.initCss = function(){
+        console.log('initCss');
+        var self = this;
+        self._state = 'closed';
+        self.element.removeClass(pluginName+'-open');
+        self.element.css({
+            'list-style': 'none',
+            'margin': 0,
+            'padding': 0,
+            'width': self.options.item_diameter+'px'
+        });
+        var $items = self.element.find('a');
+        self.element.find('li:not(:first-child) a').attr('style','visibility:hidden;');
+        $items.css({
+            'display': 'block',
+            'width': self.options.item_diameter+'px',
+            'height': self.options.item_diameter+'px',
+            'border-radius': self.options.item_diameter+'px',
+            'text-align': 'center',
+            'line-height': self.options.item_diameter+'px',
+            'text-decoration': 'none',
+            'position': 'absolute',
+            'z-index': 1,
+            'overflow': 'hidden',
+            'opacity': ''
+        });
+        self.element.find('li:first-child a').css({'z-index': 1000});
+        self.element.find('li:not(:first-child) a').css({top:0,left:0});
+        setTimeout(function(){
+            ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
+                $items.css(prefix+'transition','all '+self.options.speed+'ms '+self.options['animation-timing-function']);
+                $items.css(prefix+'transform','');
+            });
+        });
     }
 
     $.fn[pluginName] = function(options){
