@@ -31,8 +31,8 @@
                     self.options.end_angle = 360;
                     break;
                 case 'bottom':
-                    self.options.start_angle = 180-45;
-                    self.options.end_angle = 180+45;
+                    self.options.start_angle = -45;
+                    self.options.end_angle = 45;
                     break;
                 case 'right':
                     self.options.start_angle = 90-45;
@@ -43,8 +43,24 @@
                     self.options.end_angle = 270+45;
                     break;
                 case 'top':
-                    self.options.start_angle = -45;
-                    self.options.end_angle = 45;
+                    self.options.start_angle = 180-45;
+                    self.options.end_angle = 180+45;
+                    break;
+                case 'bottom-half':
+                    self.options.start_angle = -90;
+                    self.options.end_angle = 90;
+                    break;
+                case 'right-half':
+                    self.options.start_angle = 0;
+                    self.options.end_angle = 180;
+                    break;
+                case 'left-half':
+                    self.options.start_angle = 270-90;
+                    self.options.end_angle = 270+90;
+                    break;
+                case 'top-half':
+                    self.options.start_angle = 90;
+                    self.options.end_angle = 270;
                     break;
                 case 'top-left':
                     self.options.start_angle = 270;

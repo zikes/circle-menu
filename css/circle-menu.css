@@ -22,43 +22,66 @@ html,body{height:100%;padding:0;margin:0;overflow:hidden;}
     transform: rotate(315deg);
 }
 
+nav{
+    width:200px;
+    float:left;
+}
+nav ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+nav a{
+    display:block;
+    text-decoration:none;
+}
+nav a.active{
+    background:blue;
+    color:#fff;
+}
+#examples {
+    margin-left:200px;
+}
+
+#examples > div {
+    display:none;
+    width:300px;
+    height:300px;
+    border:1px solid black;
+    position:relative;
+}
+
+.menu{position:absolute;}
+
 #menu2{
-    left:200px;
-    top:200px;
-    position:absolute;
+    left:135px;
+    top:135px;
 }
 #menu3{
-    position:absolute;
     right:4px;
     bottom:34px;
 }
 #menu4{
-    position:absolute;
     top:0;
     right:4px;
 }
 #menu5{
-    position:absolute;
     bottom:34px;
     left:0;
 }
-#menu6{
-    position:absolute;
-    bottom:34px;
-    left:200px;
-}
-#menu7{
-    position:absolute;
-    top:200px;
-    left:0;
-}
-#menu8{
-    position:absolute;
+#menu6, #menu10{
     top:0;
-    left:200px;
+    left:135px;
 }
-#menu9{
-    position:absolute;
-    top:200px;
+#menu7, #menu11{
+    top:135px;
+    left:0;
+}
+#menu8, #menu12{
+    bottom:34px;
+    left:135px;
+}
+#menu9, #menu13{
+    top:135px;
     right:4px;
 }
