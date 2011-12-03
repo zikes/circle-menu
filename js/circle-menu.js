@@ -26,9 +26,7 @@
 
     CircleMenu.prototype.init = function(){
         var self = this;
-        
-        var angle = {};
-        
+
         var directions = {
             'bottom-left':[180,90],
             'bottom':[135,45],
@@ -44,12 +42,14 @@
             'full':[-90,270-Math.floor(360/self.element.find('a').length)],
             'bottom-right':[0,90]
         }
-        var direction = directions[self.options.direction.toLowerCase()];
-        if(direction){
-            self.options.angle.start = direction[0];
-            self.options.angle.end = direction[1];
+        if(typeof self.options.direction === 'string'){
+            var direction = directions[self.options.direction.toLowerCase()];
+            if(direction){
+                self.options.angle.start = direction[0];
+                self.options.angle.end = direction[1];
+            }
         }
-        
+
         self.element.css({
             'list-style': 'none',
             'margin': 0,
