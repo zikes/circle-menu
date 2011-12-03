@@ -86,12 +86,10 @@
             'overflow': 'hidden'
         });
         ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
-            var css_map = {};
-            css_map[prefix+'transition'] = 'all '+self.options.speed+'ms '+self.options['animation-timing-function'];
-            $items.css(css_map);
+            $items.css(prefix+'transition','all '+self.options.speed+'ms '+self.options['animation-timing-function']);
         });
         self.element.find('li:first-child a').css({'z-index': 1000});
-        self.element.find('li:not(:first-child) a').css({'visibility': 'hidden'});
+        self.element.find('li:not(:first-child) a').css({'visibility': 'hidden',top:0,left:0});
         self.item_count = self.element.find('li a').length - 1;
         self._step = (self.options.end_angle - self.options.start_angle) / (self.item_count-1);
         self.element.find('li:not(:first-child) a').each(function(index){
