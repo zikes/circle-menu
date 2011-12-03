@@ -6,6 +6,17 @@ selection animation and various animation options for opening and closing the me
 
 **[See it in action.][demo]**
 
+**Compatibility:**
+
+Fully Working:
+* Chrome
+* Firefox
+
+Known Issues:
+* IE 9 
+  * Does not include CSS animations for open/close.
+* Opera
+  * Open animations not working, but close animations work.
 
 [Path]: https://path.com/
 [demo]: http://zikes.github.com/circle-menu/
