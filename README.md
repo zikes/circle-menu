@@ -1,7 +1,8 @@
 ﻿Circle Menu
 ===========
 
-A jQuery plugin that emulates the menu in the [Path][] application.
+A highly customizable jQuery plugin that emulates the menu in the [Path][] application.  Includes a 
+selection animation and various animation options for opening and closing the menu.
 
 **[See it in action.][demo]**
 
