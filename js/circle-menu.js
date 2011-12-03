@@ -3,8 +3,10 @@
         defaults = {
             item_diameter: 30,
             circle_radius: 80,
-            start_angle: 90,
-            end_angle: 0,
+            angle:{
+                start: 0,
+                end: 90
+            },
             speed: 500,
             delay: 1000,
             step_out: 20,
@@ -25,64 +27,29 @@
     CircleMenu.prototype.init = function(){
         var self = this;
         
-        if(typeof self.options.direction === 'string'){
-            switch(self.options.direction.toLowerCase()){
-                case 'bottom-left':
-                    self.options.start_angle = 180;
-                    self.options.end_angle = 90;
-                    break;
-                case 'bottom':
-                    self.options.start_angle = 135;
-                    self.options.end_angle = 45;
-                    break;
-                case 'right':
-                    self.options.start_angle = -45;
-                    self.options.end_angle = 45;
-                    break;
-                case 'left':
-                    self.options.start_angle = 225;
-                    self.options.end_angle = 135;
-                    break;
-                case 'top':
-                    self.options.start_angle = 225;
-                    self.options.end_angle = 315;
-                    break;
-                case 'bottom-half':
-                    self.options.start_angle = 180;
-                    self.options.end_angle = 0;
-                    break;
-                case 'right-half':
-                    self.options.start_angle = -90;
-                    self.options.end_angle = 90;
-                    break;
-                case 'left-half':
-                    self.options.start_angle = 270;
-                    self.options.end_angle = 90;
-                    break;
-                case 'top-half':
-                    self.options.start_angle = 180;
-                    self.options.end_angle = 360;
-                    break;
-                case 'top-left':
-                    self.options.start_angle = 270;
-                    self.options.end_angle = 180;
-                    break;
-                case 'top-right':
-                    self.options.start_angle = 270;
-                    self.options.end_angle = 360;
-                    break;
-                case 'full':
-                    self.options.start_angle = -90;
-                    self.options.end_angle = 270 - Math.floor(360/self.element.find('a').length);
-                    break;
-                case 'bottom-right':
-                default:
-                    self.options.start_angle = 0;
-                    self.options.end_angle = 90;
-                    break;
-            }
+        var angle = {};
+        
+        var directions = {
+            'bottom-left':[180,90],
+            'bottom':[135,45],
+            'right':[-45,45],
+            'left':[225,135],
+            'top':[225,315],
+            'bottom-half':[180,0],
+            'right-half':[-90,90],
+            'left-half':[270,90],
+            'top-half':[180,360],
+            'top-left':[270,180],
+            'top-right':[270,360],
+            'full':[-90,270-Math.floor(360/self.element.find('a').length)],
+            'bottom-right':[0,90]
         }
-
+        var direction = directions[self.options.direction.toLowerCase()];
+        if(direction){
+            self.options.angle.start = direction[0];
+            self.options.angle.end = direction[1];
+        }
+        
         self.element.css({
             'list-style': 'none',
             'margin': 0,
@@ -108,10 +75,10 @@
         self.element.find('li:first-child a').css({'z-index': 1000});
         self.element.find('li:not(:first-child) a').css({'visibility': 'hidden',top:0,left:0});
         self.item_count = self.element.find('li a').length - 1;
-        self._step = (self.options.end_angle - self.options.start_angle) / (self.item_count-1);
+        self._step = (self.options.angle.end - self.options.angle.start) / (self.item_count-1);
         self.element.find('li:not(:first-child) a').each(function(index){
             var $item = $(this);
-            var angle = (self.options.start_angle + (self._step * index)) * (Math.PI/180);
+            var angle = (self.options.angle.start + (self._step * index)) * (Math.PI/180);
             var x = Math.round(self.options.circle_radius * Math.cos(angle));
             var y = Math.round(self.options.circle_radius * Math.sin(angle));
             $item.data('plugin_'+pluginName+'-pos-x', x);
@@ -185,7 +152,6 @@
             });
             $self.removeClass(pluginName+'-open');
         };
-        self.clearTimeouts();
         self._timeouts.push(setTimeout(do_animation,self.options.delay));
         this._state = 'closed';
         return this;
