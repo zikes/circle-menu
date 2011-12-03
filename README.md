@@ -141,7 +141,7 @@ Default: `-20`
 
 ### trigger
 
-`hover` | `click`
+**Options:** `hover` | `click`
 
 How the menu is triggered to open and close, whether by hovering over the center item or clicking 
 on it.
@@ -154,7 +154,7 @@ Default: `hover`
 
 ### animation-timing-function
 
-`ease` | `linear` | `ease-in` | `ease-out` | `ease-in-out` | `cubic-bezier(n,n,n,n)`
+**Options:** `ease` | `linear` | `ease-in` | `ease-out` | `ease-in-out` | `cubic-bezier(n,n,n,n)`
 
 The CSS timing function used to control the open/close animation.
 
