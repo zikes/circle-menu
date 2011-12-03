@@ -159,7 +159,6 @@
         }
     }
     CircleMenu.prototype.initCss = function(){
-        console.log('initCss');
         var self = this;
         self._state = 'closed';
         self.element.removeClass(pluginName+'-open');
