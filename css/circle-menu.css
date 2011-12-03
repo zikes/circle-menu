@@ -1,0 +1,64 @@
+html,body{height:100%;padding:0;margin:0;}
+.menu li:first-child a {
+    background:#f00;
+    font-weight:bold;
+    font-family:arial black;
+    font-size:200%;
+    background:url(http://i.imgur.com/3QGAU.png);
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 0 0 2px 1px #aaa;
+}
+.menu li a{
+    background:#000;
+    color:#fff;
+    font-size:125%;
+}
+.circleMenu-open li:first-child a{
+    -webkit-transform: rotate(315deg);
+    -moz-transform: rotate(315deg);
+    -o-transform: rotate(315deg);
+    transform: rotate(315deg);
+}
+
+#menu2{
+    left:200px;
+    top:200px;
+    position:absolute;
+}
+#menu3{
+    position:absolute;
+    right:4px;
+    bottom:34px;
+}
+#menu4{
+    position:absolute;
+    top:0;
+    right:4px;
+}
+#menu5{
+    position:absolute;
+    bottom:34px;
+    left:0;
+}
+#menu6{
+    position:absolute;
+    bottom:34px;
+    left:200px;
+}
+#menu7{
+    position:absolute;
+    top:200px;
+    left:0;
+}
+#menu8{
+    position:absolute;
+    top:0;
+    left:200px;
+}
+#menu9{
+    position:absolute;
+    top:200px;
+    right:4px;
+}

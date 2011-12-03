@@ -9,7 +9,8 @@
             delay: 1000,
             step_out: 20,
             step_in: -20,
-            trigger: 'hover'
+            trigger: 'hover',
+            'animation-timing-function': 'ease'
         };
 
     function CircleMenu(element, options){
@@ -84,11 +85,9 @@
             'z-index': 1,
             'overflow': 'hidden'
         });
-        ['-webkit-','-moz-','-o-',''].forEach(function(prefix){
+        ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
             var css_map = {};
-            css_map[prefix+'transition-property'] = 'all';
-            css_map[prefix+'transition-duration'] = self.options.speed+'ms';
-            css_map[prefix+'transition-timing-function'] = 'ease';
+            css_map[prefix+'transition'] = 'all '+self.options.speed+'ms '+self.options['animation-timing-function'];
             $items.css(css_map);
         });
         self.element.find('li:first-child a').css({'z-index': 1000});
