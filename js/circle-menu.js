@@ -174,7 +174,6 @@
             'display': 'block',
             'width': self.options.item_diameter+'px',
             'height': self.options.item_diameter+'px',
-            'border-radius': self.options.item_diameter+'px',
             'text-align': 'center',
             'line-height': self.options.item_diameter+'px',
             'text-decoration': 'none',
@@ -185,6 +184,9 @@
         });
         self.element.find('li:first-child a').css({'z-index': 1000});
         self.element.find('li:not(:first-child) a').css({top:0,left:0});
+        ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
+            $items.css(prefix+'border-radius',self.options.item_diameter+'px');
+        });
         setTimeout(function(){
             ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
                 $items.css(prefix+'transition','all '+self.options.speed+'ms '+self.options['animation-timing-function']);
