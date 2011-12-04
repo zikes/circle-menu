@@ -12,6 +12,7 @@ Fully Working:
 
 * Chrome
 * Firefox
+* Android
 
 Known Issues:
 
