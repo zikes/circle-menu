@@ -26,6 +26,10 @@ Known Issues:
 How to Use
 ----------
 
+[Download][jsfile] and include the JS file in your page.
+
+[jsfile]: https://raw.github.com/Zikes/circle-menu/master/js/circle-menu.js
+
 Create a list, with the first list item representing the icon at the center of the menu.
 
     <ul>
