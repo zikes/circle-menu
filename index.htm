@@ -1,211 +1,214 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
     <head>
-        <title>Circle Menu</title>
-        <link rel="stylesheet" type="text/css" href="css/circle-menu.css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script src="js/circle-menu.js"></script>
-        <script>
-            $(function(){
-                $('#menu').circleMenu({direction:'bottom-right'});
-                $('#menu2').circleMenu({direction:'full', trigger:'click'});
-                $('#menu3').circleMenu({direction:'top-left'});
-                $('#menu4').circleMenu({direction:'bottom-left'});
-                $('#menu5').circleMenu({direction:'top-right'});
-                $('#menu6').circleMenu({direction:'bottom'});
-                $('#menu7').circleMenu({direction:'right'});
-                $('#menu8').circleMenu({direction:'top'});
-                $('#menu9').circleMenu({direction:'left'});
-                $('#menu10').circleMenu({direction:'bottom-half'});
-                $('#menu11').circleMenu({direction:'right-half'});
-                $('#menu12').circleMenu({direction:'top-half'});
-                $('#menu13').circleMenu({direction:'left-half'});
-                $('#menu14').circleMenu({direction:'full', trigger:'click', step_in: 300, step_out: 300});
-                $('#menu15').circleMenu({direction:'full', trigger:'click', step_in: -300, step_out: -300});
-                
-                $('a').on('click',function(evt){if($(this).attr('href')==='#'){evt.preventDefault(); return false;}});
-                
-                $('#examples > div:first-child').css('display','block');
-                $('nav li:first-child a').addClass('active');
-                $('nav a').each(function(){
-                    var $link = $(this);
-                    $link.on('click', function(evt){
-                        $('nav a').removeClass('active');
-                        $('#examples > div').css('display','none');
-                        $('#'+$link.attr('rel')).css('display','block');
-                        $link.addClass('active');
-                    });
-                })
-            });
-        </script>
+        <meta charset="utf-8" />
+        <title>Circle Menu - Documentation</title>
+        <style type="text/css">
+            body {
+                font-family: Helvetica, Arial, FreeSans, sans-serif;
+            }
+            code {
+                font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+                background:#eee;
+                border:1px solid #ccc;
+                padding:0 5px;
+                color:#444;
+            }
+            code.block {
+                padding:5px;
+                display:block;
+                white-space:pre;
+                margin:1em;
+                overflow:auto;
+                -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+                -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+                box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+            details {
+                padding:1em 1em 1em 2em;
+                background:#E0E0E0;
+                margin-bottom:1em;
+            }
+            summary {
+                margin-left: -1em;
+            }
+            summary h3{
+                margin:0;
+                display:inline-block;
+            }
+        </style>
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="#" rel="ex-corners">Corners</a></li>
-                <li><a href="#" rel="ex-sides">Sides</a></li>
-                <li><a href="#" rel="ex-sides-half">Sides, Half Circle</a></li>
-                <li><a href="#" rel="ex-full-clickopen">Full, Click to Open</a></li>
-                <li><a href="#" rel="ex-timing">Timing</a></li>
-                <li><a href="#" rel="ex-timing-reversed">Timing, Reversed</a></li>
-            </ul>
-        </nav>
-        <div id="examples">
-            <div id="ex-corners">
-                <ul class="menu" id="menu">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-                <ul class="menu" id="menu3">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-                <ul class="menu" id="menu4">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-                <ul class="menu" id="menu5">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-sides">
-                <ul class="menu" id="menu6">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-                <ul class="menu" id="menu7">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-                <ul class="menu" id="menu8">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-                <ul class="menu" id="menu9">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
-            <div id="ex-full-clickopen">
-                <ul class="menu" id="menu2">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <li><a href="#">10</a></li>
-                </ul>
-            </div>
-            <div id="ex-sides-half">
-                <ul class="menu" id="menu10">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                </ul>
-                <ul class="menu" id="menu11">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                </ul>
-                <ul class="menu" id="menu12">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                </ul>
-                <ul class="menu" id="menu13">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                </ul>
-            </div>
-            <div id="ex-timing">
-                <ul class="menu" id="menu14">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                </ul>
-            </div>
-            <div id="ex-timing-reversed">
-                <ul class="menu" id="menu15">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                </ul>
-            </div>
-        </div>
+        <a href="https://github.com/Zikes/circle-menu"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+        <h1>Circle Menu - Documentation</h1>
+
+        <p><a href="https://raw.github.com/Zikes/circle-menu/master/circle-menu.js">Download</a> and include the JS file in your page.</p>
+
+        <p>Create a list, with the first list item representing the icon at the center of the menu.</p>
+
+        <code class="block">&lt;ul&gt;
+  &lt;li&gt;&lt;a href="#"&gt;+&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code>
+        <p>The Javascript:</p>
+
+        <code class="block">$('ul').circleMenu({
+  item_diameter: 40,
+  circle_radius: 100,
+  direction: 'bottom-right'
+});
+</code>
+
+        <h2>Options</h2>
+
+        <details>
+            <summary><h3>angle</h3></summary>
+
+            <p>Default: <code>{start: 0, end: 90}</code></p>
+
+            <p>An object specifying the position of the items in relation to the center, measured in
+            degrees where 0/360 are on the right and angle travels in a clockwise direction.  An
+            alternative to the <code>direction</code> option, if you want more control.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({angle:{start:260, end:280}});</code>
+        </details>
+
+        <details>
+            <summary><h3>animation-timing-function</h3></summary>
+
+            <p><strong>Options:</strong> <code>ease</code> | <code>linear</code> | <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> | <code>cubic-bezier(n,n,n,n)</code></p>
+
+            <p>Default: <code>ease</code></p>
+
+            <p>The CSS timing function used to control the open/close animation.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({'animation-timing-function':'linear'});</code>
+        </details>
+
+        <details>
+            <summary><h3>circle_radius</h3></summary>
+
+            <p>Default: <code>80</code></p>
+
+            <p>The radius of the circle that determines the distance of the items from the center.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({circle_radius:80});</code>
+        </details>
+
+        <details>
+            <summary><h3>delay</h3></summary>
+
+            <p>Default: <code>1000</code></p>
+
+            <p>When the menu is triggered on hover, the delay is the amount of time before the items will move back
+            in to the center, meaured in milliseconds.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({delay:500}); // a short delay</code>
+        </details>
+
+        <details>
+            <summary><h3>direction</h3></summary>
+
+            <p><strong>Options:</strong> <code>top</code> | <code>right</code> | <code>bottom</code> |
+            <code>left</code> | <code>top-right</code> | <code>top-left</code> |
+            <code>bottom-right</code> | <code>bottom-left</code> | <code>top-half</code> |
+            <code>right-half</code> | <code>bottom-half</code> | <code>left-half</code> |
+            <code>full</code></p>
+
+            <p>Default: <em>none</em></p>
+
+            <p>The direction of the items in relation to the center.  <code>top</code> will place the
+            items above the center, in a 90 degree semicircle centered upwards.  <code>top-half</code>
+            will create a full 180 degree semicircle. <code>full</code> will create a full 360 degree
+            circle, with the first item appearing at the top.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({direction:'bottom-right'});</code>
+        </details>
+
+        <details>
+            <summary><h3>item_diameter</h3></summary>
+
+            <p>Default: <code>30</code></p>
+
+            <p>The diameter of each item, in pixels.  Used to set the CSS properties of each item
+            including width, height, and border-radius.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({item_diameter:30});</code>
+        </details>
+
+        <details>
+            <summary><h3>speed</h3></summary>
+
+            <p>Default: <code>500</code></p>
+
+            <p>The animation speed, in milliseconds.  The number given is the total amount of time it will take for
+            the items to move in or out from the center.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({speed:1000});</code>
+        </details>
+
+        <details>
+            <summary><h3>step_in</h3></summary>
+
+            <p>Default: <code>-20</code></p>
+
+            <p>The number of milliseconds between each item moving in to the center when the menu closes.  A
+            negative value will cause the menu to close in reverse, starting with the last item.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({step_in:60});</code>
+        </details>
+
+        <details>
+            <summary><h3>step_out</h3></summary>
+
+            <p>Default: <code>20</code></p>
+
+            <p>The number of milliseconds between each item moving out from the center when the menu opens.  A
+            negative value will cause the menu to open in reverse, starting with the last item.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({step_out:60});</code>
+        </details>
+
+        <details>
+            <summary><h3>trigger</h3></summary>
+
+            <p><strong>Options:</strong> <code>hover</code> | <code>click</code></p>
+
+            <p>Default: <code>hover</code></p>
+
+            <p>How the menu is triggered to open and close, whether by hovering over the center item or clicking
+            on it.</p>
+
+            <p><strong>Example:</strong></p>
+
+            <code class="block">$('ul').circleMenu({trigger:'click'});</code>
+        </details>
+
     </body>
 </html>
