@@ -13,7 +13,7 @@
             step_out: 20,
             step_in: -20,
             trigger: 'hover',
-            'animation-timing-function': 'ease'
+            transition_function: 'ease'
         };
     function vendorPrefixes(items,prop,value){
         ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
@@ -234,7 +234,7 @@
         vendorPrefixes($items, 'border-radius', self.options.item_diameter+'px');
         vendorPrefixes(self.menu_items, 'transform', 'scale(.5)');
         setTimeout(function(){
-            vendorPrefixes($items, 'transition', 'all '+self.options.speed+'ms '+self.options['animation-timing-function']);
+            vendorPrefixes($items, 'transition', 'all '+self.options.speed+'ms '+self.options.transition_function);
         },0);
     }
 
