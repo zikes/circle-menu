@@ -7,8 +7,19 @@
         <script src="../jQuery.circleMenu.js"></script>
         <script>
             $(function(){
-                $('#menu').circleMenu({direction:'bottom-right'});
-                $('#menu2').circleMenu({direction:'full', trigger:'click'});
+                $('#menu').circleMenu({direction:'bottom-right',
+                    open: function(){console.log('menu opened');},
+                    close: function(){console.log('menu closed');},
+                    init: function(){console.log('menu initialized');}});
+                $('#menu2').circleMenu({
+                    direction:'full', 
+                    trigger:'click',
+                    open: function(){console.log('menu opened');},
+                    close: function(){console.log('menu closed');},
+                    init: function(){console.log('menu initialized');}
+                }).on('circleMenu-open',function(){
+                    console.log('menu opened 2');
+                });
                 $('#menu3').circleMenu({direction:'top-left'});
                 $('#menu4').circleMenu({direction:'bottom-left'});
                 $('#menu5').circleMenu({direction:'top-right'});

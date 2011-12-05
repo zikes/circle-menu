@@ -33,6 +33,8 @@
 
     CircleMenu.prototype.init = function(){
         var self = this;
+        
+        self._state = 'closed';
 
         var directions = {
             'bottom-left':[180,90],
@@ -76,8 +78,22 @@
                 self.select(index+2);
             });
         });
+
+        // Initialize event hooks from options
+        ['open','close','init'].forEach(function(evt){
+            if(self.options[evt]){
+                self.element.on(pluginName+'-'+evt, self.options[evt]);
+                delete self.options[evt];
+            }
+        });
+
         self.submenus = self.menu_items.children('ul');
         self.submenus.circleMenu($.extend({},self.options,{depth:self.options.depth+1}));
+
+        self.trigger('init');
+    };
+    CircleMenu.prototype.trigger = function(evt){
+        this.element.trigger(pluginName+'-'+evt);
     };
     CircleMenu.prototype.hook = function(){
         var self = this;
@@ -124,8 +140,11 @@
                 vendorPrefixes($item,'transform','scale(1)');
             }, start + Math.abs(self.options.step_out) * index));
         });
-        this._state = 'open';
-        return this;
+        self._timeouts.push(setTimeout(function(){
+            if(self._state === 'closed') self.trigger('open');
+            self._state = 'open';
+        },start+Math.abs(self.options.step_out) * set.length))
+        return self;
     }
     CircleMenu.prototype.close = function(immediate){
         var self = this;
@@ -147,6 +166,10 @@
                     vendorPrefixes($item,'transform','scale(.5)');
                 }, start + Math.abs(self.options.step_in) * index));
             });
+            self._timeouts.push(setTimeout(function(){
+                if(self._state === 'open') self.trigger('close');
+                self._state = 'closed';
+            },start+Math.abs(self.options.step_in) * set.length))
             $self.removeClass(pluginName+'-open');
         };
         if(immediate){
@@ -154,7 +177,6 @@
         }else{
             self._timeouts.push(setTimeout(do_animation,self.options.delay));
         }
-        this._state = 'closed';
         return this;
     }
     CircleMenu.prototype.select = function(index){
