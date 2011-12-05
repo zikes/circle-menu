@@ -216,6 +216,14 @@
             <code class="block">$('ul').circleMenu({open:function(){}});</code>
             <code class="block">$('ul').on('circleMenu-open',function(){});</code>
         </details>
+        <details>
+            <summary><h3>select</h3></summary>
+            <p>Triggered when an item is selected.  Passes the jQuery-wrapped item element as the
+            second argument to the function provided, after the jQuery event object.</p>
+            <p><strong>Examples:</strong></p>
+            <code class="block">$('ul').circleMenu({select:function(evt,item){}});</code>
+            <code class="block">$('ul').on('circleMenu-select',function(evt,item){});</code>
+        </details>
 
         <h2>Commands</h2>
         <p>The following commands may be used to manipulate the menu once it has been initialized.</p>
