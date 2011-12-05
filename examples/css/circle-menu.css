@@ -41,6 +41,12 @@
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
 }
+#menu16.circleMenu-open > li:first-child {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 :not(#menu16).circleMenu-open > li:first-child {
     -webkit-transform: rotate(315deg);
     -moz-transform: rotate(315deg);
