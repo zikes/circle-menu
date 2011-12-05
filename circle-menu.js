@@ -174,6 +174,7 @@
             'width': self.options.item_diameter+'px'
         });
         var $items = self.element.find('a');
+        $items.attr('style','');
         $items.css({
             'display': 'block',
             'width': self.options.item_diameter+'px',
