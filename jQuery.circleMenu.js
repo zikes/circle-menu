@@ -35,6 +35,7 @@
         var self = this;
         
         self._state = 'closed';
+        self.element.addClass(pluginName+'-closed');
 
         var directions = {
             'bottom-left':[180,90],
@@ -124,6 +125,7 @@
         var start = 0;
         var set;
         $self.addClass(pluginName+'-open');
+        $self.removeClass(pluginName+'-closed');
         if(self.options.step_out >= 0){
             set = self.menu_items;
         }else{
@@ -171,6 +173,7 @@
                 self._state = 'closed';
             },start+Math.abs(self.options.step_in) * set.length))
             $self.removeClass(pluginName+'-open');
+            $self.addClass(pluginName+'-closed');
         };
         if(immediate){
             do_animation()
