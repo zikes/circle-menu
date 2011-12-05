@@ -210,5 +210,25 @@
             <code class="block">$('ul').circleMenu({trigger:'click'});</code>
         </details>
 
+        <h2>Commands</h2>
+        <p>The following commands may be used to manipulate the menu once it has been initialized.</p>
+        <details>
+            <summary><h3>close</h3></summary>
+            <p>Closes the menu</p>
+            <p><strong>Example:</strong></p>
+            <code class="block">$('ul').circleMenu('close');</code>
+        </details>
+        <details>
+            <summary><h3>init</h3></summary>
+            <p>Re-intializes the menu.  Handy for use after a new item has been added.</p>
+            <p><strong>Example:</strong></p>
+            <code class="block">$('ul').append($('<li><a href="#">New</a></li>')).circleMenu('init');</code>
+        </details>
+        <details>
+            <summary><h3>open</h3></summary>
+            <p>Opens the menu</p>
+            <p><strong>Example:</strong></p>
+            <code class="block">$('ul').circleMenu('open');</code>
+        </details>
     </body>
 </html>
