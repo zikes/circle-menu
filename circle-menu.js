@@ -99,9 +99,11 @@
             var $item = $(this);
             self._timeouts.push(setTimeout(function(){
                 $item.css({
-                    visibility: 'visible',
                     left: $item.data('plugin_'+pluginName+'-pos-x')+'px',
                     top: $item.data('plugin_'+pluginName+'-pos-y')+'px'
+                });
+                ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
+                    $item.css(prefix+'transform','scale(1)');
                 });
             }, start + Math.abs(self.options.step_out) * index));
         });
@@ -123,7 +125,10 @@
             set.each(function(index){
                 var $item = $(this);
                 self._timeouts.push(setTimeout(function(){
-                    $item.css({top:0,left:0,visibility:'hidden'});
+                    $item.css({top:0,left:0});
+                    ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
+                        $item.css(prefix+'transform','scale(.5)');
+                    });
                 }, start + Math.abs(self.options.step_in) * index));
             });
             $self.removeClass(pluginName+'-open');
@@ -169,7 +174,6 @@
             'width': self.options.item_diameter+'px'
         });
         var $items = self.element.find('a');
-        self.element.find('li:not(:first-child) a').attr('style','visibility:hidden;');
         $items.css({
             'display': 'block',
             'width': self.options.item_diameter+'px',
@@ -179,20 +183,22 @@
             'text-decoration': 'none',
             'position': 'absolute',
             'z-index': 1,
-            'overflow': 'hidden',
             'opacity': ''
         });
         self.element.find('li:first-child a').css({'z-index': 1000});
-        self.element.find('li:not(:first-child) a').css({top:0,left:0});
+        self.element.find('li:not(:first-child) a').css({
+            top:0,
+            left:0
+        });
         ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
             $items.css(prefix+'border-radius',self.options.item_diameter+'px');
+            self.element.find('li:not(:first-child) a').css(prefix+'transform','scale(.5)');
         });
         setTimeout(function(){
             ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
                 $items.css(prefix+'transition','all '+self.options.speed+'ms '+self.options['animation-timing-function']);
-                $items.css(prefix+'transform','');
             });
-        });
+        },0);
     }
 
     $.fn[pluginName] = function(options){

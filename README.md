@@ -19,7 +19,7 @@ Fully Working:
 Known Issues:
 
 * IE 9 
-  * Does not include CSS animations for open/close.
+  * Does not include CSS animations for open/close, as it does not support CSS transitions.
 * Opera
   * Open animations not working, but close animations work.
 
