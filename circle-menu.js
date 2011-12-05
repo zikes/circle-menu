@@ -14,6 +14,11 @@
             trigger: 'hover',
             'animation-timing-function': 'ease'
         };
+    function vendorPrefixes(items,prop,value){
+        ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
+            items.css(prefix+prop,value);
+        });
+    }
 
     function CircleMenu(element, options){
         this._timeouts = [];
@@ -102,9 +107,7 @@
                     left: $item.data('plugin_'+pluginName+'-pos-x')+'px',
                     top: $item.data('plugin_'+pluginName+'-pos-y')+'px'
                 });
-                ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
-                    $item.css(prefix+'transform','scale(1)');
-                });
+                vendorPrefixes($item,'transform','scale(1)');
             }, start + Math.abs(self.options.step_out) * index));
         });
         this._state = 'open';
@@ -126,9 +129,7 @@
                 var $item = $(this);
                 self._timeouts.push(setTimeout(function(){
                     $item.css({top:0,left:0});
-                    ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
-                        $item.css(prefix+'transform','scale(.5)');
-                    });
+                    vendorPrefixes($item,'transform','scale(.5)');
                 }, start + Math.abs(self.options.step_in) * index));
             });
             $self.removeClass(pluginName+'-open');
@@ -144,13 +145,10 @@
             self.clearTimeouts();
             set_other = self.element.find('li:not(:nth-child('+index+'),:first-child) a');
             selected = self.element.find('li:nth-child('+index+') a');
-            ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
-                selected.css(prefix+'transition','all 500ms ease-out');
-                set_other.css(prefix+'transition','all 500ms ease-out');
-                selected.css(prefix+'transform','scale(2)');
-                set_other.css(prefix+'transform','scale(0)');
-                
-            });
+            vendorPrefixes(selected, 'transition', 'all 500ms ease-out');
+            vendorPrefixes(set_other, 'transition', 'all 500ms ease-out');
+            vendorPrefixes(selected, 'transform', 'scale(2)');
+            vendorPrefixes(set_other, 'transform', 'scale(0)');
             selected.css('opacity','0');
             set_other.css('opacity','0');
             self.element.removeClass(pluginName+'-open');
@@ -191,14 +189,10 @@
             top:0,
             left:0
         });
-        ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
-            $items.css(prefix+'border-radius',self.options.item_diameter+'px');
-            self.element.find('li:not(:first-child) a').css(prefix+'transform','scale(.5)');
-        });
+        vendorPrefixes($items, 'border-radius', self.options.item_diameter+'px');
+        vendorPrefixes(self.element.find('li:not(:first-child) a'), 'transform', 'scale(.5)');
         setTimeout(function(){
-            ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
-                $items.css(prefix+'transition','all '+self.options.speed+'ms '+self.options['animation-timing-function']);
-            });
+            vendorPrefixes($items, 'transition', 'all '+self.options.speed+'ms '+self.options['animation-timing-function']);
         },0);
     }
 
