@@ -27,6 +27,7 @@
         this._defaults = defaults;
         this._name = pluginName;
         this.init();
+        this.hook()
     }
 
     CircleMenu.prototype.init = function(){
@@ -68,7 +69,9 @@
                 self.select(index+2);
             });
         });
-        
+    };
+    CircleMenu.prototype.hook = function(){
+        var self = this;
         if(self.options.trigger === 'hover'){
             self.element.on('mouseenter',function(evt){
                 self.open();
@@ -87,7 +90,7 @@
                 return false;
             });
         }
-    };
+    }
     CircleMenu.prototype.open = function(){
         var self = this;
         var $self = this.element;
@@ -198,7 +201,21 @@
 
     $.fn[pluginName] = function(options){
         return this.each(function(){
-            if(!$.data(this, 'plugin_' + pluginName)){
+            var obj = $.data(this, 'plugin_'+pluginName);
+            if(typeof options === 'string' && obj){
+                switch(options){
+                    case 'init':
+                        obj.init();
+                        break;
+                    case 'open':
+                        obj.open();
+                        break;
+                    case 'close':
+                        obj.close();
+                        break;
+                }
+            }
+            if(!obj){
                 $.data(this, 'plugin_' + pluginName, new CircleMenu(this, options));
             }
         });
