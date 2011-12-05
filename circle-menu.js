@@ -56,10 +56,16 @@
                 self.options.angle.end = dir[1];
             }
         }
+        
+        self.menu_items = self.element.children('li:not(:first-child)');
+        
         self.initCss();
-        self.item_count = self.element.children('li').length - 1;
+        
+        self.item_count = self.menu_items.length;
+        
         self._step = (self.options.angle.end - self.options.angle.start) / (self.item_count-1);
-        self.element.children('li:not(:first-child)').each(function(index){
+        
+        self.menu_items.each(function(index){
             var $item = $(this);
             var angle = (self.options.angle.start + (self._step * index)) * (Math.PI/180);
             var x = Math.round(self.options.circle_radius * Math.cos(angle));
@@ -70,7 +76,8 @@
                 self.select(index+2);
             });
         });
-        self.element.children('li:not(:first-child)').children('ul').circleMenu($.extend({},self.options,{depth:self.options.depth-1}));
+        self.submenus = self.menu_items.children('ul');
+        self.submenus.circleMenu($.extend({},self.options,{depth:self.options.depth+1}));
     };
     CircleMenu.prototype.hook = function(){
         var self = this;
@@ -102,9 +109,9 @@
         var set;
         $self.addClass(pluginName+'-open');
         if(self.options.step_out >= 0){
-            set = $self.children('li:not(:first-child)');
+            set = self.menu_items;
         }else{
-            set = $($self.children('li:not(:first-child)').get().reverse())
+            set = $(self.menu_items.get().reverse())
         }
         self.clearTimeouts();
         set.each(function(index){
@@ -128,9 +135,9 @@
             var start = 0;
             var set;
             if(self.options.step_in >= 0){
-                set = $self.children('li:not(:first-child)');
+                set = self.menu_items;
             }else{
-                set = $($self.children('li:not(:first-child)').get().reverse());
+                set = $(self.menu_items.get().reverse());
             }
             self.clearTimeouts();
             set.each(function(index){
@@ -196,12 +203,12 @@
             'opacity': ''
         });
         self.element.children('li:first-child').css({'z-index': 1000-self.options.depth});
-        self.element.children('li:not(:first-child)').css({
+        self.menu_items.css({
             top:0,
             left:0
         });
         vendorPrefixes($items, 'border-radius', self.options.item_diameter+'px');
-        vendorPrefixes(self.element.children('li:not(:first-child)'), 'transform', 'scale(.5)');
+        vendorPrefixes(self.menu_items, 'transform', 'scale(.5)');
         setTimeout(function(){
             vendorPrefixes($items, 'transition', 'all '+self.options.speed+'ms '+self.options['animation-timing-function']);
         },0);
