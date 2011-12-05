@@ -111,7 +111,7 @@
         }else if(self.options.trigger === 'click'){
             self.element.children('li:first-child').on('click',function(evt){
                 evt.preventDefault();
-                if(self._state === 'closed'){
+                if(self._state === 'closed' || self._state === 'closing'){
                     self.open();
                 }else{
                     self.close(true);
@@ -127,6 +127,8 @@
         var $self = this.element;
         var start = 0;
         var set;
+        self.clearTimeouts();
+        if(self._state === 'open') return self;
         $self.addClass(pluginName+'-open');
         $self.removeClass(pluginName+'-closed');
         if(self.options.step_out >= 0){
@@ -134,7 +136,6 @@
         }else{
             set = $(self.menu_items.get().reverse())
         }
-        self.clearTimeouts();
         set.each(function(index){
             var $item = $(this);
             self._timeouts.push(setTimeout(function(){
@@ -146,9 +147,10 @@
             }, start + Math.abs(self.options.step_out) * index));
         });
         self._timeouts.push(setTimeout(function(){
-            if(self._state === 'closed') self.trigger('open');
+            if(self._state === 'opening') self.trigger('open');
             self._state = 'open';
-        },start+Math.abs(self.options.step_out) * set.length))
+        },start+Math.abs(self.options.step_out) * set.length));
+        self._state = 'opening';
         return self;
     }
     CircleMenu.prototype.close = function(immediate){
@@ -158,12 +160,13 @@
             self.submenus.circleMenu('close');
             var start = 0;
             var set;
+            self.clearTimeouts();
+            if(self._state === 'closed') return self;
             if(self.options.step_in >= 0){
                 set = self.menu_items;
             }else{
                 set = $(self.menu_items.get().reverse());
             }
-            self.clearTimeouts();
             set.each(function(index){
                 var $item = $(this);
                 self._timeouts.push(setTimeout(function(){
@@ -172,11 +175,13 @@
                 }, start + Math.abs(self.options.step_in) * index));
             });
             self._timeouts.push(setTimeout(function(){
-                if(self._state === 'open') self.trigger('close');
+                if(self._state === 'closing') self.trigger('close');
                 self._state = 'closed';
             },start+Math.abs(self.options.step_in) * set.length))
             $self.removeClass(pluginName+'-open');
             $self.addClass(pluginName+'-closed');
+            self._state = 'closing';
+            return self;
         };
         if(immediate){
             do_animation()
@@ -188,7 +193,7 @@
     CircleMenu.prototype.select = function(index){
         var self = this,
             selected, set_other;
-        if(self._state === 'open'){
+        if(self._state === 'open' || self._state === 'opening'){
             self.clearTimeouts();
             set_other = self.element.children('li:not(:nth-child('+index+'),:first-child)');
             selected = self.element.children('li:nth-child('+index+')');
@@ -198,8 +203,7 @@
             vendorPrefixes(set_other, 'transform', 'scale(0)');
             selected.css('opacity','0');
             set_other.css('opacity','0');
-            self.element.removeClass(pluginName+'-open');
-            setTimeout(function(){self.initCss()},510);
+            setTimeout(function(){self.element.removeClass(pluginName+'-open'); self.initCss()},500);
         }
     }
     CircleMenu.prototype.clearTimeouts = function(){

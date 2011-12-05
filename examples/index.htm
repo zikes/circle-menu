@@ -40,7 +40,7 @@
                     step_out:0
                 });
                 
-                $('a').on('click',function(evt){if($(this).attr('href')==='#'){evt.preventDefault(); return false;}});
+                $('a').on('click',function(evt){if($(this).attr('href')==='#'){evt.preventDefault();}});
                 
                 $('#examples > div:first-child').css('display','block');
                 $('nav li:first-child a').addClass('active');

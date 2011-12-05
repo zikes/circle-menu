@@ -81,6 +81,7 @@ nav a.active{
     height:300px;
     border:1px solid black;
     position:relative;
+    overflow:hidden;
 }
 
 .menu{position:absolute;}
