@@ -89,6 +89,8 @@
                 }
                 return false;
             });
+        }else if(self.options.trigger === 'none'){
+            // Do nothing
         }
     }
     CircleMenu.prototype.open = function(){
