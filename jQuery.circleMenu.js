@@ -208,7 +208,8 @@
             vendorPrefixes(set_other, 'transform', 'scale(0)');
             selected.css('opacity','0');
             set_other.css('opacity','0');
-            setTimeout(function(){self.element.removeClass(pluginName+'-open'); self.initCss()},500);
+            self.element.removeClass(pluginName+'-open');
+            setTimeout(function(){self.initCss()},500);
         }
     }
     CircleMenu.prototype.clearTimeouts = function(){
