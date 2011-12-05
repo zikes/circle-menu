@@ -21,8 +21,15 @@
 }
 #menu16 {
     -webkit-transform-origin: 17px 17px;
+    -moz-transform-origin: 17px 17px;
+    -o-transform-origin: 17px 17px;
+    transform-origin: 17px 17px;
+
     -webkit-transition: all .5s ease;
-    transition: all 1s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -o-transform: rotate(270deg);
