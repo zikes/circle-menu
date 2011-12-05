@@ -81,7 +81,7 @@
         });
 
         // Initialize event hooks from options
-        ['open','close','init'].forEach(function(evt){
+        ['open','close','init','select'].forEach(function(evt){
             var fn;
             if(self.options[evt]){
                 fn = self.options[evt];
@@ -97,8 +97,12 @@
 
         self.trigger('init');
     };
-    CircleMenu.prototype.trigger = function(evt){
-        this.element.trigger(pluginName+'-'+evt);
+    CircleMenu.prototype.trigger = function(){
+        var args = [];
+        for(var i = 0, len = arguments.length; i < len; i++){
+            args.push(arguments[i]);
+        }
+        this.element.trigger(pluginName+'-'+args.shift(), args);
     };
     CircleMenu.prototype.hook = function(){
         var self = this;
@@ -197,6 +201,7 @@
             self.clearTimeouts();
             set_other = self.element.children('li:not(:nth-child('+index+'),:first-child)');
             selected = self.element.children('li:nth-child('+index+')');
+            self.trigger('select',selected);
             vendorPrefixes(selected, 'transition', 'all 500ms ease-out');
             vendorPrefixes(set_other, 'transition', 'all 500ms ease-out');
             vendorPrefixes(selected, 'transform', 'scale(2)');

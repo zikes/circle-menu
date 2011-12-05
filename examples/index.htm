@@ -17,7 +17,8 @@
                     trigger:'click',
                     open: function(){console.log('menu opened');},
                     close: function(){console.log('menu closed');},
-                    init: function(){console.log('menu initialized');}
+                    init: function(){console.log('menu initialized');},
+                    select: function(evt,index){console.log(evt,index)}
                 }).on('circleMenu-open',function(){
                     console.log('menu opened 2');
                 });
