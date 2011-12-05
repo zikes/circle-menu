@@ -15,13 +15,12 @@ Fully Working:
 * Chrome
 * Firefox
 * Android
+* Opera
 
 Known Issues:
 
 * IE 9 
   * Does not include CSS animations for open/close, as it does not support CSS transitions.
-* Opera
-  * Open animations not working, but close animations work.
 
 [Path]: https://path.com/
 [demo]: http://zikes.github.com/circle-menu/examples/
