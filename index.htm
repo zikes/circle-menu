@@ -190,6 +190,30 @@
             <code class="block">$('ul').circleMenu({trigger:'click'});</code>
         </details>
 
+        <h2>Events</h2>
+        <p>The following are events triggered by the menu.</p>
+        <details>
+            <summary><h3>close</h3></summary>
+            <p>Trigged when the menu closes.</p>
+            <p><strong>Examples:</strong></p>
+            <code class="block">$('ul').circleMenu({close:function(){}});</code>
+            <code class="block">$('ul').on('circleMenu-close',function(){});</code>
+        </details>
+        <details>
+            <summary><h3>init</h3></summary>
+            <p>Triggered when the menu is initialized.</p>
+            <p><strong>Examples:</strong></p>
+            <code class="block">$('ul').circleMenu({init:function(){}});</code>
+            <code class="block">$('ul').on('circleMenu-init',function(){});</code>
+        </details>
+        <details>
+            <summary><h3>open</h3></summary>
+            <p>Triggered when the menu opens.</p>
+            <p><strong>Examples:</strong></p>
+            <code class="block">$('ul').circleMenu({open:function(){}});</code>
+            <code class="block">$('ul').on('circleMenu-open',function(){});</code>
+        </details>
+
         <h2>Commands</h2>
         <p>The following commands may be used to manipulate the menu once it has been initialized.</p>
         <details>
