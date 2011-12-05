@@ -34,6 +34,11 @@
                 $('#menu13').circleMenu({direction:'left-half'});
                 $('#menu14').circleMenu({direction:'full', trigger:'click', step_in: 300, step_out: 300});
                 $('#menu15').circleMenu({direction:'full', trigger:'click', step_in: -300, step_out: -300});
+                $('#menu16').circleMenu({
+                    direction:'full',
+                    step_in:0, 
+                    step_out:0
+                });
                 
                 $('a').on('click',function(evt){if($(this).attr('href')==='#'){evt.preventDefault(); return false;}});
                 
@@ -58,6 +63,7 @@
                 <li><a href="#" rel="ex-sides">Sides</a></li>
                 <li><a href="#" rel="ex-sides-half">Sides, Half Circle</a></li>
                 <li><a href="#" rel="ex-full-clickopen">Full, Click to Open</a></li>
+                <li><a href="#" rel="ex-full-spinopen">Full, Spins Open</a></li>
                 <li><a href="#" rel="ex-timing">Timing</a></li>
                 <li><a href="#" rel="ex-timing-reversed">Timing, Reversed</a></li>
             </ul>
@@ -142,6 +148,21 @@
             </div>
             <div id="ex-full-clickopen">
                 <ul class="menu" id="menu2">
+                    <li><a href="#"></a></li>
+                    <li><a href="#" alt="Item 1" title="Item 1">1</a></li>
+                    <li><a href="#" alt="Item 2" title="Item 2">2</a></li>
+                    <li><a href="#" alt="Item 3" title="Item 3">3</a></li>
+                    <li><a href="#" alt="Item 4" title="Item 4">4</a></li>
+                    <li><a href="#" alt="Item 5" title="Item 5">5</a></li>
+                    <li><a href="#" alt="Item 6" title="Item 6">6</a></li>
+                    <li><a href="#" alt="Item 7" title="Item 7">7</a></li>
+                    <li><a href="#" alt="Item 8" title="Item 8">8</a></li>
+                    <li><a href="#" alt="Item 9" title="Item 9">9</a></li>
+                    <li><a href="#" alt="Item 10" title="Item 10">10</a></li>
+                </ul>
+            </div>
+            <div id="ex-full-spinopen">
+                <ul class="menu" id="menu16">
                     <li><a href="#"></a></li>
                     <li><a href="#" alt="Item 1" title="Item 1">1</a></li>
                     <li><a href="#" alt="Item 2" title="Item 2">2</a></li>

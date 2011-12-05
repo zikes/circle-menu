@@ -19,7 +19,22 @@
     text-decoration: none;
     color:#fff;
 }
-.circleMenu-open > li:first-child {
+#menu16 {
+    -webkit-transform-origin: 17px 17px;
+    -webkit-transition: all .5s ease;
+    transition: all 1s ease;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+#menu16.circleMenu-open {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+:not(#menu16).circleMenu-open > li:first-child {
     -webkit-transform: rotate(315deg);
     -moz-transform: rotate(315deg);
     -o-transform: rotate(315deg);
@@ -57,7 +72,7 @@ nav a.active{
 
 .menu{position:absolute;}
 
-#menu2, #menu14, #menu15{
+#menu2, #menu14, #menu15, #menu16{
     left:135px;
     top:135px;
 }

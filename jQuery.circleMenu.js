@@ -82,9 +82,11 @@
 
         // Initialize event hooks from options
         ['open','close','init'].forEach(function(evt){
+            var fn;
             if(self.options[evt]){
+                fn = self.options[evt];
                 self.element.on(pluginName+'-'+evt, function(){
-                    return self.options[evt].apply(self,arguments)
+                    return fn.apply(self,arguments)
                 });
                 delete self.options[evt];
             }
