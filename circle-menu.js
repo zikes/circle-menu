@@ -131,7 +131,7 @@
         var self = this;
         var $self = this.element;
         var do_animation = function(){
-            self.element.find('ul').circleMenu('close');
+            self.submenus.circleMenu('close');
             var start = 0;
             var set;
             if(self.options.step_in >= 0){
