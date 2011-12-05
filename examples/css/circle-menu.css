@@ -1,5 +1,5 @@
 html,body{height:100%;padding:0;margin:0;overflow:hidden;}
-.menu li:first-child a {
+.menu li:first-child {
     background:#f00;
     font-weight:bold;
     font-family:arial black;
@@ -10,12 +10,16 @@ html,body{height:100%;padding:0;margin:0;overflow:hidden;}
     border-style: solid;
     box-shadow: 0 0 2px 1px #aaa;
 }
-.menu li a{
+.menu li {
     background:#000;
     color:#fff;
-    font-size:125%;
+    font-size:25px;
 }
-.circleMenu-open li:first-child a{
+.menu a{
+    text-decoration: none;
+    color:#fff;
+}
+.circleMenu-open > li:first-child {
     -webkit-transform: rotate(315deg);
     -moz-transform: rotate(315deg);
     -o-transform: rotate(315deg);
