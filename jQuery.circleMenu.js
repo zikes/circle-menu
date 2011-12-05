@@ -105,13 +105,12 @@
                 self.close();
             });
         }else if(self.options.trigger === 'click'){
-            self.options.delay = 0;
             self.element.children('li:first-child').on('click',function(evt){
                 evt.preventDefault();
                 if(self._state === 'closed'){
                     self.open();
                 }else{
-                    self.close();
+                    self.close(true);
                 }
                 return false;
             });
