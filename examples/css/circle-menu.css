@@ -30,10 +30,10 @@
     -o-transition: all .5s ease;
     transition: all .5s ease;
 
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 #menu16.circleMenu-open {
     -webkit-transform: rotate(360deg);
