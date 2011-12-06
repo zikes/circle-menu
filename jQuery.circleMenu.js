@@ -202,8 +202,7 @@
             set_other = self.element.children('li:not(:nth-child('+index+'),:first-child)');
             selected = self.element.children('li:nth-child('+index+')');
             self.trigger('select',selected);
-            vendorPrefixes(selected, 'transition', 'all 500ms ease-out');
-            vendorPrefixes(set_other, 'transition', 'all 500ms ease-out');
+            vendorPrefixes(selected.add(set_other), 'transition', 'all 500ms ease-out');
             vendorPrefixes(selected, 'transform', 'scale(2)');
             vendorPrefixes(set_other, 'transform', 'scale(0)');
             selected.css('opacity','0');
