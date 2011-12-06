@@ -15,6 +15,7 @@
             trigger: 'hover',
             transition_function: 'ease'
         };
+
     function vendorPrefixes(items,prop,value){
         ['-webkit-','-moz-','-o-','-ms-',''].forEach(function(prefix){
             items.css(prefix+prop,value);
@@ -28,51 +29,49 @@
         this._defaults = defaults;
         this._name = pluginName;
         this.init();
-        this.hook()
+        this.hook();
     }
 
     CircleMenu.prototype.init = function(){
-        var self = this;
-        
+        var self = this,
+            directions = {
+                'bottom-left':[180,90],
+                'bottom':[135,45],
+                'right':[-45,45],
+                'left':[225,135],
+                'top':[225,315],
+                'bottom-half':[180,0],
+                'right-half':[-90,90],
+                'left-half':[270,90],
+                'top-half':[180,360],
+                'top-left':[270,180],
+                'top-right':[270,360],
+                'full':[-90,270-Math.floor(360/self.element.children('li').length)],
+                'bottom-right':[0,90]
+            },
+            dir;
+
         self._state = 'closed';
         self.element.addClass(pluginName+'-closed');
 
-        var directions = {
-            'bottom-left':[180,90],
-            'bottom':[135,45],
-            'right':[-45,45],
-            'left':[225,135],
-            'top':[225,315],
-            'bottom-half':[180,0],
-            'right-half':[-90,90],
-            'left-half':[270,90],
-            'top-half':[180,360],
-            'top-left':[270,180],
-            'top-right':[270,360],
-            'full':[-90,270-Math.floor(360/self.element.children('li').length)],
-            'bottom-right':[0,90]
-        }
         if(typeof self.options.direction === 'string'){
-            var dir = directions[self.options.direction.toLowerCase()];
+            dir = directions[self.options.direction.toLowerCase()];
             if(dir){
                 self.options.angle.start = dir[0];
                 self.options.angle.end = dir[1];
             }
         }
-        
+
         self.menu_items = self.element.children('li:not(:first-child)');
-        
         self.initCss();
-        
         self.item_count = self.menu_items.length;
-        
         self._step = (self.options.angle.end - self.options.angle.start) / (self.item_count-1);
-        
         self.menu_items.each(function(index){
-            var $item = $(this);
-            var angle = (self.options.angle.start + (self._step * index)) * (Math.PI/180);
-            var x = Math.round(self.options.circle_radius * Math.cos(angle));
-            var y = Math.round(self.options.circle_radius * Math.sin(angle));
+            var $item = $(this),
+                angle = (self.options.angle.start + (self._step * index)) * (Math.PI/180),
+                x = Math.round(self.options.circle_radius * Math.cos(angle)),
+                y = Math.round(self.options.circle_radius * Math.sin(angle));
+
             $item.data('plugin_'+pluginName+'-pos-x', x);
             $item.data('plugin_'+pluginName+'-pos-y', y);
             $item.on('click', function(){
@@ -83,10 +82,11 @@
         // Initialize event hooks from options
         ['open','close','init','select'].forEach(function(evt){
             var fn;
+
             if(self.options[evt]){
                 fn = self.options[evt];
                 self.element.on(pluginName+'-'+evt, function(){
-                    return fn.apply(self,arguments)
+                    return fn.apply(self,arguments);
                 });
                 delete self.options[evt];
             }
@@ -98,14 +98,17 @@
         self.trigger('init');
     };
     CircleMenu.prototype.trigger = function(){
-        var args = [];
-        for(var i = 0, len = arguments.length; i < len; i++){
+        var args = [],
+            i, len;
+
+        for(i = 0, len = arguments.length; i < len; i++){
             args.push(arguments[i]);
         }
         this.element.trigger(pluginName+'-'+args.shift(), args);
     };
     CircleMenu.prototype.hook = function(){
         var self = this;
+
         if(self.options.trigger === 'hover'){
             self.element.on('mouseenter',function(evt){
                 self.open();
@@ -127,10 +130,11 @@
         }
     }
     CircleMenu.prototype.open = function(){
-        var self = this;
-        var $self = this.element;
-        var start = 0;
-        var set;
+        var self = this,
+            $self = this.element,
+            start = 0,
+            set;
+
         self.clearTimeouts();
         if(self._state === 'open') return self;
         $self.addClass(pluginName+'-open');
@@ -142,6 +146,7 @@
         }
         set.each(function(index){
             var $item = $(this);
+
             self._timeouts.push(setTimeout(function(){
                 $item.css({
                     left: $item.data('plugin_'+pluginName+'-pos-x')+'px',
@@ -158,12 +163,13 @@
         return self;
     }
     CircleMenu.prototype.close = function(immediate){
-        var self = this;
-        var $self = this.element;
-        var do_animation = function(){
+        var self = this,
+            $self = this.element,
+            do_animation = function do_animation(){
+            var start = 0,
+                set;
+
             self.submenus.circleMenu('close');
-            var start = 0;
-            var set;
             self.clearTimeouts();
             if(self._state === 'closed') return self;
             if(self.options.step_in >= 0){
@@ -173,6 +179,7 @@
             }
             set.each(function(index){
                 var $item = $(this);
+
                 self._timeouts.push(setTimeout(function(){
                     $item.css({top:0,left:0});
                     vendorPrefixes($item,'transform','scale(.5)');
@@ -197,6 +204,7 @@
     CircleMenu.prototype.select = function(index){
         var self = this,
             selected, set_other;
+
         if(self._state === 'open' || self._state === 'opening'){
             self.clearTimeouts();
             set_other = self.element.children('li:not(:nth-child('+index+'),:first-child)');
@@ -213,12 +221,15 @@
     }
     CircleMenu.prototype.clearTimeouts = function(){
         var timeout;
+
         while(timeout = this._timeouts.shift()){
             clearTimeout(timeout);
         }
     }
     CircleMenu.prototype.initCss = function(){
-        var self = this;
+        var self = this, 
+            $items;
+
         self._state = 'closed';
         self.element.removeClass(pluginName+'-open');
         self.element.css({
@@ -227,7 +238,7 @@
             'padding': 0,
             'width': self.options.item_diameter+'px'
         });
-        var $items = self.element.children('li');
+        $items = self.element.children('li');
         $items.attr('style','');
         $items.css({
             'display': 'block',
@@ -253,8 +264,8 @@
 
     $.fn[pluginName] = function(options){
         return this.each(function(){
-            var obj = $.data(this, 'plugin_'+pluginName);
-            var commands = {
+            var obj = $.data(this, 'plugin_'+pluginName),
+                commands = {
                 'init':function(){obj.init();},
                 'open':function(){obj.open();},
                 'close':function(){obj.close(true)}
