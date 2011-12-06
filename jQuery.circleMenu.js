@@ -255,18 +255,13 @@
     $.fn[pluginName] = function(options){
         return this.each(function(){
             var obj = $.data(this, 'plugin_'+pluginName);
-            if(typeof options === 'string' && obj){
-                switch(options){
-                    case 'init':
-                        obj.init();
-                        break;
-                    case 'open':
-                        obj.open();
-                        break;
-                    case 'close':
-                        obj.close(true);
-                        break;
-                }
+            var commands = {
+                'init':function(){obj.init();},
+                'open':function(){obj.open();},
+                'close':function(){obj.close(true)}
+            };
+            if(typeof options === 'string' && obj && commands[options]){
+                commands[options]();
             }
             if(!obj){
                 $.data(this, 'plugin_' + pluginName, new CircleMenu(this, options));
