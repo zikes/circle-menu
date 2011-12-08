@@ -1,0 +1,23 @@
+﻿{
+    "name": "zikes-circlemenu",
+    "version": "v0.1",
+    "title": "Circle Menu",
+    "author": {
+        "name": "Jason Hutchinson",
+        "email": "zikes@zikes.me",
+        "url": "http://jasonwhutchinson.com"
+    },
+    "licenses": [
+        {
+            "type": "WTFPL",
+            "url": "http://sam.zoy.org/wtfpl/"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.7.1"
+    },
+    "description": "A circular menu (often called a radial or pie menu) jQuery plugin.",
+    "keywords": ["menu","radial menu","pie menu","circle menu","radial","circle"],
+    "homepage": "http://zikes.github.com/circle-menu/",
+    "files": ["jQuery.circleMenu.js"]
+}
