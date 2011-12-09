@@ -108,16 +108,6 @@
             <code class="block">$('ul').circleMenu({angle:{start:260, end:280}});</code>
         </details>
         <details>
-            <summary><h3>animation-timing-function</h3></summary>
-            <p><strong>Options:</strong> <code>ease</code> | <code>linear</code> | 
-            <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> | 
-            <code>cubic-bezier(n,n,n,n)</code></p>
-            <p>Default: <code>ease</code></p>
-            <p>The CSS timing function used to control the open/close animation.</p>
-            <p><strong>Example:</strong></p>
-            <code class="block">$('ul').circleMenu({'animation-timing-function':'linear'});</code>
-        </details>
-        <details>
             <summary><h3>circle_radius</h3></summary>
             <p>Default: <code>80</code></p>
             <p>The radius of the circle that determines the distance of the items from the 
@@ -181,6 +171,16 @@
             item.</p>
             <p><strong>Example:</strong></p>
             <code class="block">$('ul').circleMenu({step_out:60});</code>
+        </details>
+        <details>
+            <summary><h3>transition_function</h3></summary>
+            <p><strong>Options:</strong> <code>ease</code> | <code>linear</code> | 
+            <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> | 
+            <code>cubic-bezier(n,n,n,n)</code></p>
+            <p>Default: <code>ease</code></p>
+            <p>The CSS timing function used to control the open/close animation.</p>
+            <p><strong>Example:</strong></p>
+            <code class="block">$('ul').circleMenu({'transition_function':'linear'});</code>
         </details>
         <details>
             <summary><h3>trigger</h3></summary>
