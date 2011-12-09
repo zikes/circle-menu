@@ -128,7 +128,7 @@
         }else if(self.options.trigger === 'none'){
             // Do nothing
         }
-    }
+    };
     CircleMenu.prototype.open = function(){
         var self = this,
             $self = this.element,
@@ -142,7 +142,7 @@
         if(self.options.step_out >= 0){
             set = self.menu_items;
         }else{
-            set = $(self.menu_items.get().reverse())
+            set = $(self.menu_items.get().reverse());
         }
         set.each(function(index){
             var $item = $(this);
@@ -161,7 +161,7 @@
         },start+Math.abs(self.options.step_out) * set.length));
         self._state = 'opening';
         return self;
-    }
+    };
     CircleMenu.prototype.close = function(immediate){
         var self = this,
             $self = this.element,
@@ -188,19 +188,19 @@
             self._timeouts.push(setTimeout(function(){
                 if(self._state === 'closing') self.trigger('close');
                 self._state = 'closed';
-            },start+Math.abs(self.options.step_in) * set.length))
+            },start+Math.abs(self.options.step_in) * set.length));
             $self.removeClass(pluginName+'-open');
             $self.addClass(pluginName+'-closed');
             self._state = 'closing';
             return self;
         };
         if(immediate){
-            do_animation()
+            do_animation();
         }else{
             self._timeouts.push(setTimeout(do_animation,self.options.delay));
         }
         return this;
-    }
+    };
     CircleMenu.prototype.select = function(index){
         var self = this,
             selected, set_other;
@@ -216,16 +216,16 @@
             selected.css('opacity','0');
             set_other.css('opacity','0');
             self.element.removeClass(pluginName+'-open');
-            setTimeout(function(){self.initCss()},500);
+            setTimeout(function(){self.initCss();},500);
         }
-    }
+    };
     CircleMenu.prototype.clearTimeouts = function(){
         var timeout;
 
         while(timeout = this._timeouts.shift()){
             clearTimeout(timeout);
         }
-    }
+    };
     CircleMenu.prototype.initCss = function(){
         var self = this, 
             $items;
@@ -260,7 +260,7 @@
         setTimeout(function(){
             vendorPrefixes($items, 'transition', 'all '+self.options.speed+'ms '+self.options.transition_function);
         },0);
-    }
+    };
 
     $.fn[pluginName] = function(options){
         return this.each(function(){
@@ -268,7 +268,7 @@
                 commands = {
                 'init':function(){obj.init();},
                 'open':function(){obj.open();},
-                'close':function(){obj.close(true)}
+                'close':function(){obj.close(true);}
             };
             if(typeof options === 'string' && obj && commands[options]){
                 commands[options]();
@@ -277,5 +277,5 @@
                 $.data(this, 'plugin_' + pluginName, new CircleMenu(this, options));
             }
         });
-    }
+    };
 })(jQuery, window, document);
