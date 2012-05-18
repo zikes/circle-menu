@@ -46,7 +46,7 @@
                 'top-half':[180,360],
                 'top-left':[270,180],
                 'top-right':[270,360],
-                'full':[-90,270-Math.floor(360/self.element.children('li').length)],
+                'full':[-90,270-Math.floor(360/(self.element.children('li').length - 1))],
                 'bottom-right':[0,90]
             },
             dir;
